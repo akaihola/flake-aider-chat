@@ -8,28 +8,38 @@ The purpose of this flake is to create a reproducible environment for using the 
 
 ## Usage
 
-1. **Clone the Repository**:
+In the examples below, replace `<user>` with the GitHub username whose fork you want to use.
+
+1. **Install**:
+   Aider and its dependencies are installed into the Python and NodeJS environments
+   in the `~/.cache/aider-chat/` directory by running:
    ```sh
-   git clone <repository-url>
-   cd <repository-directory>
+   nix develop 'https://github.com/<user>/flake-aider-chat/archive/refs/heads/main.zip#install'
    ```
 
-2. **Enter the Development Shell**:
+2. **Run**:
+   To launch Aider in the `~/.cache/aider-chat/` environment, type:
    ```sh
-   nix develop
+   nix develop 'https://github.com/<user>/flake-aider-chat/archive/refs/heads/main.zip'
    ```
 
-   This command will drop you into a shell with all the dependencies set up and the `aider` command available.
-
-3. **Using the `aider` Command**:
-   Once inside the shell, you can use the `aider` command as needed. For more information on how to use `aider`, refer to the [Aider CLI tool documentation](https://aider.chat/) and the [GitHub repository](https://github.com/paul-gauthier/aider).
+3. **Shell**:
+   If you want to launch `aider` manually on the command line, you can drop to a shell
+   in the Aider environment:
+   ```sh
+   nix develop 'https://github.com/<user>/flake-aider-chat/archive/refs/heads/main.zip#shell'
+   ```
+   You can then use the `aider --config=$AIDER_CONF` command as needed. For more information on how to use `aider`, refer to the [Aider CLI tool documentation](https://aider.chat/) and the [GitHub repository](https://github.com/paul-gauthier/aider).
 
 ## Configuration Details
 
 The environment is defined in the `flake.nix` file. It includes:
-- Python 3 and essential Python packages (`virtualenv`, `pip`, `setuptools`, `wheel`).
-- A virtual environment (`.venv`) that is automatically created and activated.
-- The `aider` CLI tool is installed and upgraded within the virtual environment.
+- `libsecret` so API keys can be managed by the desktop keychain
+- NodeJS with ESLint installed in `~/.cache/aider-chat/.npm-global/`
+- Python 3 and a virtualenv (`~/.cache/aider-chat/.venv/`) that is automatically created and activated.
+- The `aider` CLI tool is installed and upgraded within the Python virtualenv.
+- The Playwright library (Python version) and supporting browsers. 
 - The `PATH` is configured to include the virtual environment's `bin` directory.
+- An `aider-install` script is provided for installing and upgrading Aider and its dependencies as well as ESLint.
 
 For more details, refer to the `flake.nix` file in this repository.
