@@ -14,6 +14,6 @@ if [ -f pyproject.toml ]; then
   pytest || errors=$?
 fi
 
-find -name "*.nix" -exec nix-instantiate --parse {} \+ || errors=$?
+find -name "*.nix" -exec nix-instantiate --parse {} \+ >/dev/null || errors=$?
 
 exit $errors
