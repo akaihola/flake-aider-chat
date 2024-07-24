@@ -6,7 +6,7 @@ if [ -f Cargo.toml ]; then
   cargo test || errors=$?
 fi
 
-if [ find -regex ".*\.\(m?j\|t\)s$" ]; then
+if find -regex ".*\.\(m?j\|t\)s$" -print | grep -q .; then
   eslint || errors=$?
 fi
 
