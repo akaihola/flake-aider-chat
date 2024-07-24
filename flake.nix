@@ -40,6 +40,7 @@
           AIDER_MODEL_METADATA_FILE = "${./claude-3.5-sonnet.metadata.json}";
           AIDER_MODEL_SETTINGS_FILE = "${./claude-3.5-sonnet.settings.yml}";
           AIDER_TEST_CMD = "${./run-tests.sh}";
+          AIDER_CONF = "${./aider.conf.yml}";
 
           environmentSetupScript = ''
             ENV="''${XDG_CACHE_HOME:-''${HOME}/.cache}/aider-chat"
@@ -58,13 +59,13 @@
             inherit
               buildInputs LD_LIBRARY_PATH
               PLAYWRIGHT_BROWSERS_PATH PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS PLAYWRIGHT_NODEJS_PATH
-              AIDER_MODEL_METADATA_FILE AIDER_MODEL_SETTINGS_FILE AIDER_TEST_CMD;
+              AIDER_MODEL_METADATA_FILE AIDER_MODEL_SETTINGS_FILE AIDER_TEST_CMD AIDER_CONF;
           };
         in {
           default = pkgs.mkShell ( commonShellAttrs // {
             shellHook = environmentSetupScript + ''
               grep -B100 "^Once" ${./usage.md} | head --lines=-1
-              exec aider --config=${./aider.conf.yml}
+              exec aider --config=''${AIDER_CONF}
             '';
           });
           install = pkgs.mkShell ( commonShellAttrs // {
