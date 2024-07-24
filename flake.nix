@@ -37,8 +37,8 @@
           # https://github.com/microsoft/playwright/issues/5501
           PLAYWRIGHT_NODEJS_PATH = "${pkgs.nodejs}/bin/node";
 
-          AIDER_MODEL_METADATA_FILE = "${./claude-3.5-sonnet.metadata.json}";
-          AIDER_MODEL_SETTINGS_FILE = "${./claude-3.5-sonnet.settings.yml}";
+          AIDER_MODEL_METADATA_FILE = "${./openrouter-claude.metadata.json}";
+          AIDER_MODEL_SETTINGS_FILE = "${./openrouter-claude.settings.yml}";
           AIDER_TEST_CMD = "${./run-tests.sh}";
           AIDER_CONF = "${./aider.conf.yml}";
 
