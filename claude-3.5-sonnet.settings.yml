@@ -1,0 +1,8 @@
+---
+- name: "openrouter/anthropic/claude-3.5-sonnet:beta"
+  edit_format: "diff"
+  weak_model_name: "openrouter/anthropic/claude-3-haiku:beta"
+  use_repo_map: true
+  examples_as_sys_msg: true
+  can_prefill: true
+  accepts_images: true
