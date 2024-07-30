@@ -2,7 +2,7 @@
 
 pip install \
   --upgrade\
-  'aider-chat[hf-embed]' \
+  'aider-chat[help]' \
   --extra-index-url=https://download.pytorch.org/whl/cpu
 echo Downgrading to playwright==1.40.0 which is hopefully
 echo compatible with playwright-driver.browsers from NixOS
