@@ -11,7 +11,9 @@ if find -regex ".*\.\(m?j\|t\)s$" -print | grep -q .; then
 fi
 
 if [ -f pyproject.toml ]; then
-  pytest || errors=$?
+  if command -v pytest &> /dev/null; then
+    pytest || errors=$?
+  fi
 fi
 
 find -name "*.nix" -exec nix-instantiate --parse {} \+ >/dev/null || errors=$?
