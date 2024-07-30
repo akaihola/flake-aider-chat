@@ -183,7 +183,7 @@ auto-commits: false
 #lint-cmd:
 
 ## Enable/disable automatic linting after changes (default: True)
-#auto-lint: true
+auto-lint: true
 
 ## Specify command to run tests
 #test-cmd:

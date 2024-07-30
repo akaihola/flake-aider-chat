@@ -39,6 +39,7 @@
 
           AIDER_MODEL_METADATA_FILE = "${./openrouter-claude.metadata.json}";
           AIDER_MODEL_SETTINGS_FILE = "${./openrouter-claude.settings.yml}";
+          AIDER_LINT_CMD = "${./run-lint.sh}";
           AIDER_TEST_CMD = "${./run-tests.sh}";
           AIDER_CONF = "${./aider.conf.yml}";
 
@@ -59,7 +60,7 @@
             inherit
               buildInputs LD_LIBRARY_PATH
               PLAYWRIGHT_BROWSERS_PATH PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS PLAYWRIGHT_NODEJS_PATH
-              AIDER_MODEL_METADATA_FILE AIDER_MODEL_SETTINGS_FILE AIDER_TEST_CMD AIDER_CONF;
+              AIDER_MODEL_METADATA_FILE AIDER_MODEL_SETTINGS_FILE AIDER_LINT_CMD AIDER_TEST_CMD AIDER_CONF;
           };
         in {
           default = pkgs.mkShell ( commonShellAttrs // {
